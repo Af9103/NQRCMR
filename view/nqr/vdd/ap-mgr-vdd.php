@@ -380,23 +380,12 @@ $queryKasir = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE YEAR(dt_op_q
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="../../../assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="../../../asset/sweetalert2/sweet.js"></script>
   <script src="../../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../../../assets/vendor/chart.js/chart.umd.js"></script>
-  <script src="../../../assets/vendor/echarts/echarts.min.js"></script>
-  <script src="../../../assets/vendor/quill/quill.min.js"></script>
-  <script src="../../../assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="../../../assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="../../../assets/vendor/php-email-form/validate.js"></script>
-  <!-- Template Main JS File -->
-  <script src="../../../assets/js/main.js"></script>
-
   <!-- Load jQuery and DataTables -->
   <script src="../../../asset/jQuery/jquery-3.6.0.min.js"></script>
   <script src="../../../asset/DataTables/js/datatables.min.js"></script>
   <script src="../../../assets/sweetalert2/package/dist/sweetalert2.all.min.js"></script>
-
   <script src="../../../assets/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
   <script src="../../../assets/DataTables-2.0.1/js/dataTables.bootstrap4.min.js"></script>
 

@@ -102,38 +102,38 @@ $pChecked = ($info === "1") ? "checked" : "";
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Dashboard - NQR</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+  <title>Dashboard - NQR</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
 
-    <!-- Favicons -->
-    <link href="../../../assets/img/k-logo.jpg" rel="icon">
-    <link href="../../../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- Favicons -->
+  <link href="../../../assets/img/k-logo.jpg" rel="icon">
+  <link href="../../../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
-    <link href="../../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="../../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="../../../assets/vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="../../../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="../../../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="../../../assets/vendor/simple-datatables/style.css" rel="stylesheet">
-    <link href="../../../assets/DataTables-2.0.1/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    <!-- <link href="https://cdn.datatables.net/v/bs4/dt-2.0.1/.css" rel="stylesheet"> -->
+  <!-- Vendor CSS Files -->
+  <link href="../../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../../../assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="../../../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="../../../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../../../assets/vendor/simple-datatables/style.css" rel="stylesheet">
+  <link href="../../../assets/DataTables-2.0.1/css/dataTables.bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="https://cdn.datatables.net/v/bs4/dt-2.0.1/.css" rel="stylesheet"> -->
 
-    <!-- Template Main CSS File -->
-    <link href="../../../assets/css/style.css" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="../../../assets/css/style.css" rel="stylesheet">
 
-    <!-- =======================================================
+  <!-- =======================================================
   * Template Name: NiceAdmin
   * Updated: Nov 17 2023 with Bootstrap v5.3.2
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -144,49 +144,48 @@ $pChecked = ($info === "1") ? "checked" : "";
 
 <body>
 
-    <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top d-flex align-items-center">
-        <?php include '../../../layout/header.php'; ?>
-    </header><!-- End Header -->
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <?php include '../../../layout/header.php'; ?>
+  </header><!-- End Header -->
 
-    <!-- ======= Sidebar ======= -->
-    <aside id="sidebar" class="sidebar">
-        <?php include '../../../layout/sidebar.php'; ?>
-    </aside><!-- End Sidebar-->
-    <main id="main" class="main">
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+    <?php include '../../../layout/sidebar.php'; ?>
+  </aside><!-- End Sidebar-->
+  <main id="main" class="main">
 
-        <div class="pagetitle">
-            <h1>Dashboard</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <!-- <li class="breadcrumb-item"><a href="index.php">Home</a></li> -->
-                    <li class="breadcrumb-item active">Home</li>
-                </ol>
-            </nav>
-        </div><!-- End Page Title -->
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <!-- <li class="breadcrumb-item"><a href="index.php">Home</a></li> -->
+          <li class="breadcrumb-item active">Home</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
 
-        <section class="section dashboard">
-            <div class="row">
+    <section class="section dashboard">
+      <div class="row">
 
-                <!-- Left side columns -->
-                <div class="col-lg-12">
-                    <div class="row">
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+          <div class="row">
 
-                        <!-- Revenue Card -->
-                        <div class="col-xxl-4 col-md-6">
-                            <div class="card info-card revenue-card" onclick="window.location.href='requestvdd.php';"
-                                style="cursor: pointer;">
+            <!-- Revenue Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card revenue-card" onclick="window.location.href='requestvdd.php';"
+                style="cursor: pointer;">
 
-                                <div class="card-body">
-                                    <h5 class="card-title">Requested <span>| This Year</span></h5>
+                <div class="card-body">
+                  <h5 class="card-title">Requested <span>| This Year</span></h5>
 
-                                    <div class="d-flex align-items-center">
-                                        <div
-                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi-dash-circle-fill text-warning"></i>
-                                        </div>
-                                        <div class="ps-3">
-                                            <?php
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi-dash-circle-fill text-warning"></i>
+                    </div>
+                    <div class="ps-3">
+                      <?php
                       // Melakukan query untuk menghitung jumlah status dengan nilai 2, 3, dan 4
                       $queryJumlahData = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah FROM transaksi WHERE YEAR(dt_op_qa) = $currentYear AND status_vdd IN (1,2)");
 
@@ -194,30 +193,29 @@ $pChecked = ($info === "1") ? "checked" : "";
                       $row = mysqli_fetch_assoc($queryJumlahData);
                       $jumlahStatus = $row['jumlah'];
                       ?>
-                                            <h6><?php echo $jumlahStatus; ?></h6>
+                      <h6><?php echo $jumlahStatus; ?></h6>
 
-                                        </div>
-                                    </div>
-                                </div>
+                    </div>
+                  </div>
+                </div>
 
-                            </div>
-                        </div><!-- End Revenue Card -->
+              </div>
+            </div><!-- End Revenue Card -->
 
-                        <!-- Revenue Card -->
-                        <div class="col-xxl-4 col-md-6">
-                            <div class="card info-card revenue-card" onclick="window.location.href='rejectvdd.php';"
-                                style="cursor: pointer;">
+            <!-- Revenue Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card revenue-card" onclick="window.location.href='rejectvdd.php';"
+                style="cursor: pointer;">
 
-                                <div class="card-body">
-                                    <h5 class="card-title">Rejected <span>| This Year</span></h5>
+                <div class="card-body">
+                  <h5 class="card-title">Rejected <span>| This Year</span></h5>
 
-                                    <div class="d-flex align-items-center">
-                                        <div
-                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi-x-circle-fill text-danger"></i></a>
-                                        </div>
-                                        <div class="ps-3">
-                                            <?php
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi-x-circle-fill text-danger"></i></a>
+                    </div>
+                    <div class="ps-3">
+                      <?php
                       // Melakukan query untuk menghitung jumlah status dengan nilai 2, 3, dan 4
                       $queryJumlahData = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah FROM transaksi WHERE YEAR(dt_op_qa) = $currentYear AND status_vdd IN (6, 7, 8)");
 
@@ -225,30 +223,29 @@ $pChecked = ($info === "1") ? "checked" : "";
                       $row = mysqli_fetch_assoc($queryJumlahData);
                       $jumlahStatus = $row['jumlah'];
                       ?>
-                                            <h6><?php echo $jumlahStatus; ?></h6>
-                                        </div>
-                                    </div>
-                                </div>
+                      <h6><?php echo $jumlahStatus; ?></h6>
+                    </div>
+                  </div>
+                </div>
 
-                            </div>
-                        </div><!-- End Revenue Card -->
+              </div>
+            </div><!-- End Revenue Card -->
 
-                        <!-- Customers Card -->
-                        <div class="col-xxl-4 col-xl-12">
+            <!-- Customers Card -->
+            <div class="col-xxl-4 col-xl-12">
 
-                            <div class="card info-card customers-card" onclick="window.location.href='approvevdd.php';"
-                                style="cursor: pointer;">
+              <div class="card info-card customers-card" onclick="window.location.href='approvevdd.php';"
+                style="cursor: pointer;">
 
-                                <div class="card-body">
-                                    <h5 class="card-title">Approved <span>| This Year</span></h5>
+                <div class="card-body">
+                  <h5 class="card-title">Approved <span>| This Year</span></h5>
 
-                                    <div class="d-flex align-items-center">
-                                        <div
-                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-check-circle-fill text-success"></i></a>
-                                        </div>
-                                        <div class="ps-3">
-                                            <?php
+                  <div class="d-flex align-items-center">
+                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                      <i class="bi bi-check-circle-fill text-success"></i></a>
+                    </div>
+                    <div class="ps-3">
+                      <?php
                       // Melakukan query untuk menghitung jumlah status dengan nilai 2, 3, dan 4
                       $queryJumlahData = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah FROM transaksi WHERE YEAR(dt_op_qa) = $currentYear AND status_vdd IN (3, 4, 5)");
 
@@ -256,88 +253,86 @@ $pChecked = ($info === "1") ? "checked" : "";
                       $row = mysqli_fetch_assoc($queryJumlahData);
                       $jumlahStatus = $row['jumlah'];
                       ?>
-                                            <h6><?php echo $jumlahStatus; ?></h6>
-                                        </div>
-                                    </div>
+                      <h6><?php echo $jumlahStatus; ?></h6>
+                    </div>
+                  </div>
 
-                                </div>
-                            </div>
+                </div>
+              </div>
 
-                        </div><!-- End Customers Card -->
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="filter">
-                                    <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                            class="bi bi-three-dots"></i></a>
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                        <li class="dropdown-header text-start">
-                                            <h6>Filter</h6>
-                                        </li>
-                                        <li><a id="thisWeek" class="dropdown-item" href="#">This Week</a></li>
-                                        <li><a id="thisMonth" class="dropdown-item" href="#">This Month</a></li>
-                                        <li><a id="thisYear" class="dropdown-item" href="#">This Year</a></li>
-                                    </ul>
-                                </div>
+            </div><!-- End Customers Card -->
+            <div class="card">
+              <div class="card-body">
+                <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                    <li class="dropdown-header text-start">
+                      <h6>Filter</h6>
+                    </li>
+                    <li><a id="thisWeek" class="dropdown-item" href="#">This Week</a></li>
+                    <li><a id="thisMonth" class="dropdown-item" href="#">This Month</a></li>
+                    <li><a id="thisYear" class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+                </div>
 
-                                <script>
-                                // Fungsi untuk mengubah teks di dalam elemen <span> berdasarkan pilihan filter
-                                function updateFilterText(text) {
-                                    document.getElementById('filterText').innerText = text;
-                                }
+                <script>
+                  // Fungsi untuk mengubah teks di dalam elemen <span> berdasarkan pilihan filter
+                  function updateFilterText(text) {
+                    document.getElementById('filterText').innerText = text;
+                  }
 
-                                // Event listener untuk pilihan "This Week"
-                                document.getElementById('thisWeek').addEventListener('click', function() {
-                                    updateFilterText("| This Week"); // Memperbarui teks filter
-                                    window.location.href =
-                                        'dasbor-vdd.php?filter=week'; // Redirect dengan filter "week"
-                                });
+                  // Event listener untuk pilihan "This Week"
+                  document.getElementById('thisWeek').addEventListener('click', function () {
+                    updateFilterText("| This Week"); // Memperbarui teks filter
+                    window.location.href =
+                      'dasbor-vdd.php?filter=week'; // Redirect dengan filter "week"
+                  });
 
-                                // Event listener untuk pilihan "This Month"
-                                document.getElementById('thisMonth').addEventListener('click', function() {
-                                    updateFilterText("| This Month"); // Memperbarui teks filter
-                                    window.location.href =
-                                        'dasbor-vdd.php?filter=month'; // Redirect dengan filter "month"
-                                });
+                  // Event listener untuk pilihan "This Month"
+                  document.getElementById('thisMonth').addEventListener('click', function () {
+                    updateFilterText("| This Month"); // Memperbarui teks filter
+                    window.location.href =
+                      'dasbor-vdd.php?filter=month'; // Redirect dengan filter "month"
+                  });
 
-                                // Event listener untuk pilihan "This Year"
-                                document.getElementById('thisYear').addEventListener('click', function() {
-                                    updateFilterText("| This Year"); // Memperbarui teks filter
-                                    window.location.href =
-                                        'dasbor-vdd.php?filter=year'; // Redirect dengan filter "year"
-                                });
+                  // Event listener untuk pilihan "This Year"
+                  document.getElementById('thisYear').addEventListener('click', function () {
+                    updateFilterText("| This Year"); // Memperbarui teks filter
+                    window.location.href =
+                      'dasbor-vdd.php?filter=year'; // Redirect dengan filter "year"
+                  });
 
-                                // Memeriksa apakah ada filter saat halaman dimuat
-                                window.onload = function() {
-                                    var currentFilter =
-                                        "<?php echo isset($_GET['filter']) ? $_GET['filter'] : ''; ?>";
-                                    if (currentFilter) {
-                                        // Jika ada filter, update teks filter dengan filter saat ini
-                                        updateFilterText("| This " + currentFilter.charAt(0).toUpperCase() +
-                                            currentFilter.slice(1));
-                                    } else {
-                                        // Jika tidak ada filter, biarkan teks filter seperti itu
-                                        updateFilterText("");
-                                    }
-                                };
-                                </script>
+                  // Memeriksa apakah ada filter saat halaman dimuat
+                  window.onload = function () {
+                    var currentFilter =
+                      "<?php echo isset($_GET['filter']) ? $_GET['filter'] : ''; ?>";
+                    if (currentFilter) {
+                      // Jika ada filter, update teks filter dengan filter saat ini
+                      updateFilterText("| This " + currentFilter.charAt(0).toUpperCase() +
+                        currentFilter.slice(1));
+                    } else {
+                      // Jika tidak ada filter, biarkan teks filter seperti itu
+                      updateFilterText("");
+                    }
+                  };
+                </script>
 
-                                <!-- Teks judul dengan elemen <span> untuk menampilkan teks filter -->
-                                <h5 class="card-title">Nonconforming Quality Report History <span
-                                        id="filterText"></span></h5>
+                <!-- Teks judul dengan elemen <span> untuk menampilkan teks filter -->
+                <h5 class="card-title">Nonconforming Quality Report History <span id="filterText"></span></h5>
 
-                                <table class="table table-hover text-center" id="ppcTable">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Reg No</th>
-                                            <th scope="col">Pay compensation</th>
-                                            <th scope="col">Send The replacement</th>
-                                            <!-- <th scope="col">Detail</th> -->
-                                            <th scope="col">Status</th>
-                                            <th scope="col" data-orderable="false">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
+                <table class="table table-hover text-center" id="ppcTable">
+                  <thead>
+                    <tr>
+                      <th scope="col">Reg No</th>
+                      <th scope="col">Pay compensation</th>
+                      <th scope="col">Send The replacement</th>
+                      <!-- <th scope="col">Detail</th> -->
+                      <th scope="col">Status</th>
+                      <th scope="col" data-orderable="false">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
                     while ($user_data = mysqli_fetch_array($query1)) {
                       echo "<tr>";
                       echo "<td>" . $user_data['reg_no'] . "</td>";
@@ -651,134 +646,122 @@ $pChecked = ($info === "1") ? "checked" : "";
 
                     }
                     ?>
-                                    </tbody>
+                  </tbody>
 
-                                </table>
-                            </div>
-        </section>
+                </table>
+              </div>
+    </section>
 
-    </main><!-- End #main -->
+  </main><!-- End #main -->
 
-    <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-        <?php include '../../../layout/footer.php'; ?>
-    </footer><!-- End Footer -->
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <?php include '../../../layout/footer.php'; ?>
+  </footer><!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
-    <!-- Vendor JS Files -->
-    <script src="../../../assets/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="../../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../../assets/vendor/chart.js/chart.umd.js"></script>
-    <script src="../../../assets/vendor/echarts/echarts.min.js"></script>
-    <script src="../../../assets/vendor/quill/quill.min.js"></script>
-    <script src="../../../assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="../../../assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="../../../assets/vendor/php-email-form/validate.js"></script>
+  <!-- Vendor JS Files -->
+  <script src="../../../asset/sweetalert2/sweet.js"></script>
+  <script src="../../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Load jQuery and DataTables -->
+  <script src="../../../asset/jQuery/jquery-3.6.0.min.js"></script>
+  <script src="../../../asset/DataTables/js/datatables.min.js"></script>
+  <script src="../../../assets/sweetalert2/package/dist/sweetalert2.all.min.js"></script>
+  <script src="../../../assets/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+  <script src="../../../assets/DataTables-2.0.1/js/dataTables.bootstrap4.min.js"></script>
 
+  <script>
+    $(document).ready(function () {
+      // Define custom sorting function for status_vdd column
+      $.fn.dataTable.ext.type.order['status-vdd-pre'] = function (data) {
+        switch (data) {
+          case '1':
+            return 0;
+          case '2':
+            return 1;
+          case '6':
+            return 2;
+          case '7':
+            return 3;
+          case '8':
+            return 4;
+          case '3':
+            return 5;
+          case '4':
+            return 6;
+          case '5':
+            return 7;
+          default:
+            return 8; // Default to a high number for unknown values
+        }
+      };
 
-    <!-- Template Main JS File -->
-    <script src="../../../assets/js/main.js"></script>
-
-    <!-- Load jQuery and DataTables -->
-    <script src="../../../asset/jQuery/jquery-3.6.0.min.js"></script>
-    <script src="../../../asset/DataTables/js/datatables.min.js"></script>
-    <script src="../../../assets/sweetalert2/package/dist/sweetalert2.all.min.js"></script>
-
-    <script src="../../../assets/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
-    <script src="../../../assets/DataTables-2.0.1/js/dataTables.bootstrap4.min.js"></script>
-
-    <script>
-    $(document).ready(function() {
-        // Define custom sorting function for status_vdd column
-        $.fn.dataTable.ext.type.order['status-vdd-pre'] = function(data) {
-            switch (data) {
-                case '1':
-                    return 0;
-                case '2':
-                    return 1;
-                case '6':
-                    return 2;
-                case '7':
-                    return 3;
-                case '8':
-                    return 4;
-                case '3':
-                    return 5;
-                case '4':
-                    return 6;
-                case '5':
-                    return 7;
-                default:
-                    return 8; // Default to a high number for unknown values
-            }
-        };
-
-        // Initialize DataTable with custom sorting
-        $('#ppcTable').DataTable({
-            autoWidth: false,
-            language: {
-                emptyTable: "There is no NQR data in this record"
-            },
-            lengthMenu: [5, 10, 15, 20, 25],
-            order: [
-                [3, 'asc']
-            ], // Sort ascending based on status_vdd
-            columnDefs: [{
-                    type: 'status-vdd',
-                    targets: 3
-                } // Apply custom sorting to status_vdd column
-            ]
-        });
+      // Initialize DataTable with custom sorting
+      $('#ppcTable').DataTable({
+        autoWidth: false,
+        language: {
+          emptyTable: "There is no NQR data in this record"
+        },
+        lengthMenu: [5, 10, 15, 20, 25],
+        order: [
+          [3, 'asc']
+        ], // Sort ascending based on status_vdd
+        columnDefs: [{
+          type: 'status-vdd',
+          targets: 3
+        } // Apply custom sorting to status_vdd column
+        ]
+      });
     });
-    </script>
+  </script>
 
-    <script>
+  <script>
     function updateTime() {
-        var currentTime = new Date();
-        var hours = currentTime.getHours();
-        var minutes = currentTime.getMinutes();
-        var seconds = currentTime.getSeconds();
+      var currentTime = new Date();
+      var hours = currentTime.getHours();
+      var minutes = currentTime.getMinutes();
+      var seconds = currentTime.getSeconds();
 
-        // Menambahkan leading zero jika angka kurang dari 10
-        hours = (hours < 10 ? "0" : "") + hours;
-        minutes = (minutes < 10 ? "0" : "") + minutes;
-        seconds = (seconds < 10 ? "0" : "") + seconds;
+      // Menambahkan leading zero jika angka kurang dari 10
+      hours = (hours < 10 ? "0" : "") + hours;
+      minutes = (minutes < 10 ? "0" : "") + minutes;
+      seconds = (seconds < 10 ? "0" : "") + seconds;
 
-        var formattedTime = hours + ":" + minutes + ":" + seconds;
+      var formattedTime = hours + ":" + minutes + ":" + seconds;
 
-        document.getElementById("current-time").innerText = formattedTime;
+      document.getElementById("current-time").innerText = formattedTime;
     }
     // Memanggil updateTime setiap detik
     setInterval(updateTime, 1000);
 
     // Panggil updateTime setelah halaman dimuat
     updateTime();
-    </script>
+  </script>
 
 </body>
 
 </html>
 
 <style>
-.dataTables_wrapper .dataTables_filter {
+  .dataTables_wrapper .dataTables_filter {
     float: right;
     margin-right: 10px;
-}
+  }
 
-#ppcTable th {
+  #ppcTable th {
     text-align: center;
-}
+  }
 
-.custom-button {
+  .custom-button {
     background-color: white;
     border-color: green;
     color: green;
-}
+  }
 
-.custom-button:hover {
+  .custom-button:hover {
     background-color: green;
     color: white;
-}
+  }
 </style>

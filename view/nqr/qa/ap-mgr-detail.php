@@ -428,68 +428,68 @@ $RUChecked = ($cof === "2") ? "checked" : "";
                                 </div>
 
                                 <?php if ($doi1 !== "0"): ?>
-                                <fieldset class="row mb-3">
-                                    <legend class="col-form-label col-sm-4 pt-0">At Customer</legend>
-                                    <div class="col-sm-8">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="doi1" id="doi11"
-                                                value="1" <?php echo $SCChecked; ?> disabled>
-                                            <label class="form-check-label" for="doi11">
-                                                Sorted by Customer
-                                            </label>
+                                    <fieldset class="row mb-3">
+                                        <legend class="col-form-label col-sm-4 pt-0">At Customer</legend>
+                                        <div class="col-sm-8">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="doi1" id="doi11"
+                                                    value="1" <?php echo $SCChecked; ?> disabled>
+                                                <label class="form-check-label" for="doi11">
+                                                    Sorted by Customer
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="doi1" id="doi12"
+                                                    value="2" <?php echo $SSChecked; ?> disabled>
+                                                <label class="form-check-label" for="doi12">
+                                                    Sorted by Supplier
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="doi1" id="doi13"
+                                                    value="3" <?php echo $SPChecked; ?> disabled>
+                                                <label class="form-check-label" for="doi13">
+                                                    Sorted by PT KYBI
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="doi1" id="doi14"
+                                                    value="4" <?php echo $SKChecked; ?> disabled>
+                                                <label class="form-check-label" for="doi14">
+                                                    Keep to use
+                                                </label>
+                                            </div>
                                         </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="doi1" id="doi12"
-                                                value="2" <?php echo $SSChecked; ?> disabled>
-                                            <label class="form-check-label" for="doi12">
-                                                Sorted by Supplier
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="doi1" id="doi13"
-                                                value="3" <?php echo $SPChecked; ?> disabled>
-                                            <label class="form-check-label" for="doi13">
-                                                Sorted by PT KYBI
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="doi1" id="doi14"
-                                                value="4" <?php echo $SKChecked; ?> disabled>
-                                            <label class="form-check-label" for="doi14">
-                                                Keep to use
-                                            </label>
-                                        </div>
-                                    </div>
-                                </fieldset>
+                                    </fieldset>
                                 <?php endif; ?>
 
                                 <?php if ($doi2 !== "0"): ?>
-                                <fieldset class="row mb-3">
-                                    <legend class="col-form-label col-sm-4 pt-0">At PT KYBI</legend>
-                                    <div class="col-sm-8">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="doi2" id="doi22"
-                                                value="2" <?php echo $SKChecked; ?> disabled>
-                                            <label class="form-check-label" for="doi22">
-                                                Sorted by Supplier
-                                            </label>
+                                    <fieldset class="row mb-3">
+                                        <legend class="col-form-label col-sm-4 pt-0">At PT KYBI</legend>
+                                        <div class="col-sm-8">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="doi2" id="doi22"
+                                                    value="2" <?php echo $SKChecked; ?> disabled>
+                                                <label class="form-check-label" for="doi22">
+                                                    Sorted by Supplier
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="doi2" id="doi23"
+                                                    value="3" <?php echo $PKChecked; ?> disabled>
+                                                <label class="form-check-label" for="doi23">
+                                                    Sorted by PT KYBI
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="doi2" id="doi24"
+                                                    value="4" <?php echo $KKChecked; ?> disabled>
+                                                <label class="form-check-label" for="doi24">
+                                                    Keep to use
+                                                </label>
+                                            </div>
                                         </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="doi2" id="doi23"
-                                                value="3" <?php echo $PKChecked; ?> disabled>
-                                            <label class="form-check-label" for="doi23">
-                                                Sorted by PT KYBI
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="doi2" id="doi24"
-                                                value="4" <?php echo $KKChecked; ?> disabled>
-                                            <label class="form-check-label" for="doi24">
-                                                Keep to use
-                                            </label>
-                                        </div>
-                                    </div>
-                                </fieldset>
+                                    </fieldset>
                                 <?php endif; ?>
                                 <fieldset class="row mb-3">
                                     <legend class="col-form-label col-sm-4 pt-0">Claim of Occurance</legend>
@@ -511,12 +511,12 @@ $RUChecked = ($cof === "2") ? "checked" : "";
                                     </div>
                                 </fieldset>
                                 <?php if ($cof !== "1"): ?>
-                                <div class="row mb-3">
-                                    <label for="inputText" class="col-sm-4 col-form-label">Routin</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" readonly value="<?php echo $routin; ?>">
+                                    <div class="row mb-3">
+                                        <label for="inputText" class="col-sm-4 col-form-label">Routin</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" readonly value="<?php echo $routin; ?>">
+                                        </div>
                                     </div>
-                                </div>
                                 <?php endif; ?>
 
                                 <fieldset class="row mb-3">
@@ -588,18 +588,18 @@ $RUChecked = ($cof === "2") ? "checked" : "";
                                     </div>
 
                                     <?php if ($att != null) { ?>
-                                    <div class="row">
-                                        <div class="form-group col-sm-12 mb-8">
-                                            <embed id="pdfembed" src="<?php echo "../../../file/$att"; ?>" width="1050"
-                                                height="400" type="application/pdf">
+                                        <div class="row">
+                                            <div class="form-group col-sm-12 mb-8">
+                                                <embed id="pdfembed" src="<?php echo "../../../file/$att"; ?>" width="1050"
+                                                    height="400" type="application/pdf">
+                                            </div>
                                         </div>
-                                    </div>
                                     <?php } else { ?>
-                                    <div class="row">
-                                        <div class="form-group col-sm-12 mb-8">
-                                            <p>File belum diupload.</p>
+                                        <div class="row">
+                                            <div class="form-group col-sm-12 mb-8">
+                                                <p>File belum diupload.</p>
+                                            </div>
                                         </div>
-                                    </div>
                                     <?php } ?>
                                 </div>
 
@@ -676,19 +676,14 @@ $RUChecked = ($cof === "2") ? "checked" : "";
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 
-    <script src="../../../assets/sweetalert2/sweetalert2.all.min.js"></script>
-    <!-- Vendor JS Files -->
-    <script src="../../../assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="../../../asset/sweetalert2/sweet.js"></script>
     <script src="../../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../../assets/vendor/chart.js/chart.umd.js"></script>
-    <script src="../../../assets/vendor/echarts/echarts.min.js"></script>
-    <script src="../../../assets/vendor/quill/quill.min.js"></script>
-    <script src="../../../assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="../../../assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="../../../assets/vendor/php-email-form/validate.js"></script>
-
-    <!-- Template Main JS File -->
-    <script src="../../../assets/js/main.js"></script>
+    <!-- Load jQuery and DataTables -->
+    <script src="../../../asset/jQuery/jquery-3.6.0.min.js"></script>
+    <script src="../../../asset/DataTables/js/datatables.min.js"></script>
+    <script src="../../../assets/sweetalert2/package/dist/sweetalert2.all.min.js"></script>
+    <script src="../../../assets/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+    <script src="../../../assets/DataTables-2.0.1/js/dataTables.bootstrap4.min.js"></script>
 
     <?php
     // Proses form jika tombol tolak diklik
@@ -704,60 +699,52 @@ $RUChecked = ($cof === "2") ? "checked" : "";
             // Kirim notifikasi jika query update berhasil
             $message = "Pemberitahuan NQR! NQR dengan nomor $reg_no telah di approve oleh Manager QA $nm_mgr_qa. Selanjutnya akan dilanjutkan oleh departemen PPC.";
             $flags = "queue";
-            $query_phone = "SELECT no_hp FROM isd 
-                            LEFT JOIN ct_users ON ct_users.npk = isd.npk 
-                            WHERE ct_users.golongan = 2 AND ct_users.acting = 2 AND dept = 'PPC'";
-            $result_phone = mysqli_query($koneksi2, $query_phone);
+            $query_npk = "SELECT npk FROM ct_users WHERE golongan = 2 AND acting = 2 AND dept = 'PPC'";
+            $result_npk = mysqli_query($koneksi2, $query_npk);
 
-            $phone_numbers = array();
-
-            if ($result_phone) {
-                while ($phone_row = mysqli_fetch_assoc($result_phone)) {
-                    $phone_numbers[] = $phone_row['no_hp'];
+            // Collect NPKs
+            $npk_list = array();
+            if ($result_npk) {
+                while ($row = mysqli_fetch_assoc($result_npk)) {
+                    $npk_list[] = "'" . $row['npk'] . "'";
                 }
             }
 
-            if (!empty($phone_numbers)) {
-                foreach ($phone_numbers as $phone_number) {
-                    $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
-                    mysqli_query($koneksi, $query_insert_notif);
+            if (!empty($npk_list)) {
+                // Convert NPK array to string for query
+                $npk_list_str = implode(',', $npk_list);
+
+                // Query to get phone numbers based on NPK list
+                $query_phone = "SELECT no_hp FROM hp WHERE npk IN ($npk_list_str)";
+                $result_phone = mysqli_query($koneksi4, $query_phone);
+
+                $phone_numbers = array();
+                if ($result_phone) {
+                    while ($phone_row = mysqli_fetch_assoc($result_phone)) {
+                        $phone_numbers[] = $phone_row['no_hp'];
+                    }
+                }
+
+                if (!empty($phone_numbers)) {
+                    // Insert notification for each phone number
+                    foreach ($phone_numbers as $phone_number) {
+                        $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
+                        mysqli_query($koneksi, $query_insert_notif);
+                    }
                 }
             }
             echo '<script>
-    var no_reg_sanitized = "' . preg_replace("/[^a-zA-Z0-9]+/", "", $reg_no) . '";
-    var message = "NQR dengan nomor ' . $reg_no . ' telah di approve oleh foreman(' . $nm_spv_qa . '). Klik link ini untuk memeriksa NQR: http://e-learning.stmi.ac.id/mhs/login";
-
-    var numbers = ["081283265843", "089502233425"]; // Tambahkan nomor baru di sini
-
-    numbers.forEach(function(number) {
-        var formData = new FormData();
-        formData.append("message", message);
-        formData.append("number", number);
-
-        fetch("https://3rxjp5-8000.csb.app/send-message", {
-            method: "POST",
-            body: formData
-        })
-        .then(() => {
-            console.log("Pesan berhasil dikirim ke " + number);
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
-    });
-
-    // Menampilkan SweetAlert tanpa menunggu pesan WhatsApp terkirim
-    Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "NQR Approved",
-        text: "NQR dengan nomor ' . $reg_no . ' telah di-approve oleh ' . $nm_mgr_qa . ' pada ' . $dt_mgr_qa . ' ",
-        showConfirmButton: false,
-        timer: 2000
-    }).then(() => {
-        window.location.href = "ap-mgr.php";
-    });
-</script>';
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "NQR Approved",
+                text: "NQR dengan nomor ' . $reg_no . ' telah di-approve oleh ' . $nm_mgr_qa . ' pada ' . $dt_mgr_qa . ' ",
+                showConfirmButton: false,
+                timer: 2000
+            }).then(() => {
+                window.location.href = "ap-mgr.php";
+            });
+        </script>';
         } else {
             echo "Gagal mengupdate data: " . mysqli_error($koneksi); // Tampilkan pesan kesalahan jika query gagal
         }
@@ -780,60 +767,52 @@ $RUChecked = ($cof === "2") ? "checked" : "";
             // Kirim notifikasi jika query update berhasil
             $message = "Pemberitahuan NQR! NQR dengan nomor $reg_no telah di reject oleh Manager QA $nm_mgr_qa dengan remark $remark_mgr_qa";
             $flags = "queue";
-            $query_phone = "SELECT no_hp FROM isd 
-                            LEFT JOIN ct_users ON ct_users.npk = isd.npk 
-                            WHERE ct_users.golongan = 2 AND ct_users.acting = 2 AND dept = 'QA'";
-            $result_phone = mysqli_query($koneksi2, $query_phone);
+            $query_npk = "SELECT npk FROM ct_users WHERE golongan = 2 AND acting = 2 AND dept = 'QA'";
+            $result_npk = mysqli_query($koneksi2, $query_npk);
 
-            $phone_numbers = array();
-
-            if ($result_phone) {
-                while ($phone_row = mysqli_fetch_assoc($result_phone)) {
-                    $phone_numbers[] = $phone_row['no_hp'];
+            // Collect NPKs
+            $npk_list = array();
+            if ($result_npk) {
+                while ($row = mysqli_fetch_assoc($result_npk)) {
+                    $npk_list[] = "'" . $row['npk'] . "'";
                 }
             }
 
-            if (!empty($phone_numbers)) {
-                foreach ($phone_numbers as $phone_number) {
-                    $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
-                    mysqli_query($koneksi, $query_insert_notif);
+            if (!empty($npk_list)) {
+                // Convert NPK array to string for query
+                $npk_list_str = implode(',', $npk_list);
+
+                // Query to get phone numbers based on NPK list
+                $query_phone = "SELECT no_hp FROM hp WHERE npk IN ($npk_list_str)";
+                $result_phone = mysqli_query($koneksi4, $query_phone);
+
+                $phone_numbers = array();
+                if ($result_phone) {
+                    while ($phone_row = mysqli_fetch_assoc($result_phone)) {
+                        $phone_numbers[] = $phone_row['no_hp'];
+                    }
+                }
+
+                if (!empty($phone_numbers)) {
+                    // Insert notification for each phone number
+                    foreach ($phone_numbers as $phone_number) {
+                        $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
+                        mysqli_query($koneksi, $query_insert_notif);
+                    }
                 }
             }
             echo '<script>
-    var no_reg_sanitized = "' . preg_replace("/[^a-zA-Z0-9]+/", "", $reg_no) . '";
-    var message = "NQR dengan nomor ' . $reg_no . ' telah di reject oleh foreman(' . $nm_mgr_qa . ').dengan alasan ' . $remark_mgr_qa . ' Klik link ini untuk memeriksa NQR: http://e-learning.stmi.ac.id/mhs/login";
-
-    var numbers = ["081283265843", "089502233425"]; // Tambahkan nomor baru di sini
-
-    numbers.forEach(function(number) {
-        var formData = new FormData();
-        formData.append("message", message);
-        formData.append("number", number);
-
-        fetch("https://3rxjp5-8000.csb.app/send-message", {
-            method: "POST",
-            body: formData
-        })
-        .then(() => {
-            console.log("Pesan berhasil dikirim ke " + number);
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
-    });
-
-    // Menampilkan SweetAlert tanpa menunggu pesan WhatsApp terkirim
-    Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "NQR Rejected",
-        text: "NQR dengan nomor ' . $reg_no . ' telah di-reject oleh ' . $nm_mgr_qa . ' pada ' . $dt_mgr_qa . ' dengan remark ' . $remark_mgr_qa . '",
-        showConfirmButton: false,
-        timer: 2000
-    }).then(() => {
-        window.location.href = "ap-mgr.php";
-    });
-</script>';
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "NQR Rejected",
+                    text: "NQR dengan nomor ' . $reg_no . ' telah di-reject oleh ' . $nm_mgr_qa . ' pada ' . $dt_mgr_qa . ' dengan remark ' . $remark_mgr_qa . '",
+                    showConfirmButton: false,
+                    timer: 2000
+                }).then(() => {
+                    window.location.href = "ap-mgr.php";
+                });
+            </script>';
         } else {
             echo "Gagal mengupdate data: " . mysqli_error($koneksi); // Tampilkan pesan kesalahan jika query gagal
         }
@@ -842,27 +821,27 @@ $RUChecked = ($cof === "2") ? "checked" : "";
     ?>
 
     <script>
-    function updateTime() {
-        var currentTime = new Date();
-        var hours = currentTime.getHours();
-        var minutes = currentTime.getMinutes();
-        var seconds = currentTime.getSeconds();
+        function updateTime() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
 
-        // Menambahkan leading zero jika angka kurang dari 10
-        hours = (hours < 10 ? "0" : "") + hours;
-        minutes = (minutes < 10 ? "0" : "") + minutes;
-        seconds = (seconds < 10 ? "0" : "") + seconds;
+            // Menambahkan leading zero jika angka kurang dari 10
+            hours = (hours < 10 ? "0" : "") + hours;
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            seconds = (seconds < 10 ? "0" : "") + seconds;
 
-        var formattedTime = hours + ":" + minutes + ":" + seconds;
+            var formattedTime = hours + ":" + minutes + ":" + seconds;
 
-        document.getElementById("current-time").innerText = formattedTime;
-    }
+            document.getElementById("current-time").innerText = formattedTime;
+        }
 
-    // Memanggil updateTime setiap detik
-    setInterval(updateTime, 1000);
+        // Memanggil updateTime setiap detik
+        setInterval(updateTime, 1000);
 
-    // Panggil updateTime setelah halaman dimuat
-    updateTime();
+        // Panggil updateTime setelah halaman dimuat
+        updateTime();
     </script>
 
 </body>
@@ -873,23 +852,23 @@ $RUChecked = ($cof === "2") ? "checked" : "";
 
 </html>
 <style>
-.btn-primary.custom-button {
-    color: white;
-}
+    .btn-primary.custom-button {
+        color: white;
+    }
 
-.btn-primary.custom-button:hover {
-    background-color: white;
-    color: #007bff;
-    /* Bootstrap primary color */
-}
+    .btn-primary.custom-button:hover {
+        background-color: white;
+        color: #007bff;
+        /* Bootstrap primary color */
+    }
 
-.btn-danger.custom-button {
-    color: white;
-}
+    .btn-danger.custom-button {
+        color: white;
+    }
 
-.btn-danger.custom-button:hover {
-    background-color: white;
-    color: #dc3545;
-    /* Bootstrap danger color */
-}
+    .btn-danger.custom-button:hover {
+        background-color: white;
+        color: #dc3545;
+        /* Bootstrap danger color */
+    }
 </style>

@@ -289,49 +289,41 @@ $SeaChecked = ($stc === "2") ? "checked" : "";
         if ($result && $result2) {
             $message = "Pemberitahuan CMR! CMR dengan nomor $cmr_no telah dilanjutkan oleh $nm_op_vdd. Status menunggu approval foreman.";
             $flags = "queue";
-            $query_phone = "SELECT no_hp FROM isd 
-                            LEFT JOIN ct_users ON ct_users.npk = isd.npk 
-                            WHERE ct_users.golongan = 3 AND ct_users.acting = 2 AND dept = 'VDD'";
-            $result_phone = mysqli_query($koneksi2, $query_phone);
+            $query_npk = "SELECT npk FROM ct_users WHERE golongan = 3 AND acting = 2 AND dept = 'VDD'";
+            $result_npk = mysqli_query($koneksi2, $query_npk);
 
-            $phone_numbers = array();
-
-            if ($result_phone) {
-                while ($phone_row = mysqli_fetch_assoc($result_phone)) {
-                    $phone_numbers[] = $phone_row['no_hp'];
+            // Collect NPKs
+            $npk_list = array();
+            if ($result_npk) {
+                while ($row = mysqli_fetch_assoc($result_npk)) {
+                    $npk_list[] = "'" . $row['npk'] . "'";
                 }
             }
 
-            if (!empty($phone_numbers)) {
-                foreach ($phone_numbers as $phone_number) {
-                    $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
-                    mysqli_query($koneksi3, $query_insert_notif);
+            if (!empty($npk_list)) {
+                // Convert NPK array to string for query
+                $npk_list_str = implode(',', $npk_list);
+
+                // Query to get phone numbers based on NPK list
+                $query_phone = "SELECT no_hp FROM hp WHERE npk IN ($npk_list_str)";
+                $result_phone = mysqli_query($koneksi4, $query_phone);
+
+                $phone_numbers = array();
+                if ($result_phone) {
+                    while ($phone_row = mysqli_fetch_assoc($result_phone)) {
+                        $phone_numbers[] = $phone_row['no_hp'];
+                    }
+                }
+
+                if (!empty($phone_numbers)) {
+                    // Insert notification for each phone number
+                    foreach ($phone_numbers as $phone_number) {
+                        $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
+                        mysqli_query($koneksi3, $query_insert_notif);
+                    }
                 }
             }
             echo '<script>
-      var no_reg_sanitized = "' . preg_replace("/[^a-zA-Z0-9]+/", "", $cmr_no) . '";
-      var message = "CMR dengan nomor ' . $cmr_no . ' telah di-update oleh operator VDD (' . $nm_op_vdd . '). Klik link ini untuk memeriksa NQR: http://e-learning.stmi.ac.id/mhs/login";
-  
-      var numbers = ["081283265843", "089502233425"]; // Tambahkan nomor baru di sini
-  
-      numbers.forEach(function(number) {
-          var formData = new FormData();
-          formData.append("message", message);
-          formData.append("number", number);
-  
-          fetch("https://3rxjp5-8000.csb.app/send-message", {
-              method: "POST",
-              body: formData
-          })
-          .then(() => {
-              console.log("Pesan berhasil dikirim ke " + number);
-          })
-          .catch(error => {
-              console.error("Error:", error);
-          });
-      });
-  
-      // Menampilkan SweetAlert tanpa menunggu pesan WhatsApp terkirim
       Swal.fire({
           position: "center",
           icon: "success",

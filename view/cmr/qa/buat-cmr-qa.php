@@ -82,9 +82,9 @@ $process = isset($_GET['alert']) ? ($_GET['alert']) : false;
 
         <!-- Tampilkan pesan -->
         <!-- <?php if (!empty($msg)): ?> -->
-        <div id="successMessage" class="alert alert-success" role="alert">
-            <?php echo $msg; ?>
-        </div>
+            <div id="successMessage" class="alert alert-success" role="alert">
+                <?php echo $msg; ?>
+            </div>
         <?php endif; ?>
         </div><!-- End Page Title -->
         <section class="section">
@@ -434,61 +434,61 @@ $process = isset($_GET['alert']) ? ($_GET['alert']) : false;
                                         <input type="file" class="form-control mb-2" name="file" id="fileInput">
                                         <div id="filePreview"></div>
                                         <?php if ($process == 'gagal_ekstensi'): ?>
-                                        <div class="alert alert-danger mt-2">
-                                            Jenis file tidak diizinkan
-                                        </div>
+                                            <div class="alert alert-danger mt-2">
+                                                Jenis file tidak diizinkan
+                                            </div>
                                         <?php elseif ($process == 'gagal_ukuran'): ?>
-                                        <div class="alert alert-danger mt-2">
-                                            Ukuran file terlalu besar
-                                        </div>
+                                            <div class="alert alert-danger mt-2">
+                                                Ukuran file terlalu besar
+                                            </div>
                                         <?php elseif ($process == 'berhasil'): ?>
-                                        <div class="alert alert-success mt-2">
-                                            Upload berhasil
-                                        </div>
+                                            <div class="alert alert-success mt-2">
+                                                Upload berhasil
+                                            </div>
                                         <?php endif; ?>
                                     </div>
                                 </div>
 
                                 <script>
-                                document.getElementById('fileInput').addEventListener('change', function() {
-                                    const file = this.files[0];
-                                    const fileError = document.getElementById('fileError');
-                                    const filePreview = document.getElementById('filePreview');
-                                    fileError.textContent = '';
-                                    filePreview.innerHTML = '';
+                                    document.getElementById('fileInput').addEventListener('change', function () {
+                                        const file = this.files[0];
+                                        const fileError = document.getElementById('fileError');
+                                        const filePreview = document.getElementById('filePreview');
+                                        fileError.textContent = '';
+                                        filePreview.innerHTML = '';
 
-                                    if (file) {
-                                        const fileType = file.type;
-                                        const fileSize = file.size;
+                                        if (file) {
+                                            const fileType = file.type;
+                                            const fileSize = file.size;
 
-                                        // Check if file is a PDF
-                                        if (fileType !== 'application/pdf') {
-                                            fileError.textContent = 'Format file tidak sesuai(PDF Only)';
-                                            return;
+                                            // Check if file is a PDF
+                                            if (fileType !== 'application/pdf') {
+                                                fileError.textContent = 'Format file tidak sesuai(PDF Only)';
+                                                return;
+                                            }
+                                            // Check if file size exceeds 2MB
+                                            if (fileSize > 2 * 1024 * 1024) {
+                                                fileError.textContent = 'Ukuran file terlalu besar*';
+                                                return;
+                                            }
+
+                                            const reader = new FileReader();
+                                            reader.onload = function (event) {
+                                                const preview = document.createElement('embed');
+                                                preview.setAttribute('src', event.target.result);
+                                                preview.setAttribute('class',
+                                                    'mb-12'); // Menyesuaikan kelas CSS
+                                                preview.setAttribute('width', '100%'); // Lebar 100%
+                                                preview.setAttribute('height',
+                                                    '500px'); // Sesuaikan jika diperlukan
+                                                filePreview.appendChild(preview);
+                                            }
+
+                                            reader.readAsDataURL(file);
+                                        } else {
+                                            filePreview.innerHTML = 'No file selected';
                                         }
-                                        // Check if file size exceeds 2MB
-                                        if (fileSize > 2 * 1024 * 1024) {
-                                            fileError.textContent = 'Ukuran file terlalu besar*';
-                                            return;
-                                        }
-
-                                        const reader = new FileReader();
-                                        reader.onload = function(event) {
-                                            const preview = document.createElement('embed');
-                                            preview.setAttribute('src', event.target.result);
-                                            preview.setAttribute('class',
-                                                'mb-12'); // Menyesuaikan kelas CSS
-                                            preview.setAttribute('width', '100%'); // Lebar 100%
-                                            preview.setAttribute('height',
-                                                '500px'); // Sesuaikan jika diperlukan
-                                            filePreview.appendChild(preview);
-                                        }
-
-                                        reader.readAsDataURL(file);
-                                    } else {
-                                        filePreview.innerHTML = 'No file selected';
-                                    }
-                                });
+                                    });
                                 </script>
                                 <!-- Tambahkan elemen form lainnya sesuai kebutuhan -->
 
@@ -512,14 +512,7 @@ $process = isset($_GET['alert']) ? ($_GET['alert']) : false;
             class="bi bi-arrow-up-short"></i></a>
     <script src="../../../assets/sweetalert2/sweetalert2.all.min.js"></script>
     <!-- Vendor JS Files -->
-    <script src="../../../assets/vendor/apexcharts/apexcharts.min.js"></script>
     <script src="../../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../../assets/vendor/chart.js/chart.umd.js"></script>
-    <script src="../../../assets/vendor/echarts/echarts.min.js"></script>
-    <script src="../../../assets/vendor/quill/quill.min.js"></script>
-    <script src="../../../assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="../../../assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="../../../assets/vendor/php-email-form/validate.js"></script>
     <script src="../../../asset/jQuery/jquery-3.6.0.js"></script>
     <script src="../../../asset/jQuery/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
 
@@ -650,51 +643,43 @@ $process = isset($_GET['alert']) ? ($_GET['alert']) : false;
                         // Add the new code for sending notifications
                         $message = "Pemberitahuan CMR! CMR dengan nomor $cmr_no telah dibuat oleh $nm_op_qa. Status menunggu approval foreman.";
                         $flags = "queue";
-                        $query_phone = "SELECT no_hp FROM isd 
-                                        LEFT JOIN ct_users ON ct_users.npk = isd.npk 
-                                        WHERE ct_users.golongan = 3 AND ct_users.acting = 2 AND dept = 'QA'";
-                        $result_phone = mysqli_query($koneksi2, $query_phone);
+                        $query_npk = "SELECT npk FROM ct_users WHERE golongan = 3 AND acting = 2 AND dept = 'QA'";
+                        $result_npk = mysqli_query($koneksi2, $query_npk);
 
-                        $phone_numbers = array();
-
-                        if ($result_phone) {
-                            while ($phone_row = mysqli_fetch_assoc($result_phone)) {
-                                $phone_numbers[] = $phone_row['no_hp'];
+                        // Collect NPKs
+                        $npk_list = array();
+                        if ($result_npk) {
+                            while ($row = mysqli_fetch_assoc($result_npk)) {
+                                $npk_list[] = "'" . $row['npk'] . "'";
                             }
                         }
 
-                        if (!empty($phone_numbers)) {
-                            foreach ($phone_numbers as $phone_number) {
-                                $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
-                                mysqli_query($koneksi3, $query_insert_notif);
+                        if (!empty($npk_list)) {
+                            // Convert NPK array to string for query
+                            $npk_list_str = implode(',', $npk_list);
+
+                            // Query to get phone numbers based on NPK list
+                            $query_phone = "SELECT no_hp FROM hp WHERE npk IN ($npk_list_str)";
+                            $result_phone = mysqli_query($koneksi4, $query_phone);
+
+                            $phone_numbers = array();
+                            if ($result_phone) {
+                                while ($phone_row = mysqli_fetch_assoc($result_phone)) {
+                                    $phone_numbers[] = $phone_row['no_hp'];
+                                }
+                            }
+
+                            if (!empty($phone_numbers)) {
+                                // Insert notification for each phone number
+                                foreach ($phone_numbers as $phone_number) {
+                                    $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
+                                    mysqli_query($koneksi3, $query_insert_notif);
+                                }
                             }
                         }
 
                         // Display success message and handle the WhatsApp notifications
                         echo '<script>
-                            var no_cmr_sanitized = "' . preg_replace("/[^a-zA-Z0-9]+/", "", $cmr_no) . '";
-                            var message = "CMR dengan nomor ' . $cmr_no . ' telah di-approve oleh operator QA (' . $nm_op_qa . '). Klik link ini untuk memeriksa NQR: http://e-learning.stmi.ac.id/mhs/login";
-                        
-                            var numbers = ["081283265843", "089502233425"]; // Tambahkan nomor baru di sini
-                        
-                            numbers.forEach(function(number) {
-                                var formData = new FormData();
-                                formData.append("message", message);
-                                formData.append("number", number);
-                        
-                                fetch("https://3rxjp5-8000.csb.app/send-message", {
-                                    method: "POST",
-                                    body: formData
-                                })
-                                .then(() => {
-                                    console.log("Pesan berhasil dikirim ke " + number);
-                                })
-                                .catch(error => {
-                                    console.error("Error:", error);
-                                });
-                            });
-                        
-                            // Display SweetAlert without waiting for WhatsApp message to send
                             Swal.fire({
                                 position: "center",
                                 icon: "success",
@@ -745,123 +730,123 @@ $process = isset($_GET['alert']) ? ($_GET['alert']) : false;
     }
     ?>
     <script>
-    document.querySelectorAll('input[type="radio"][name="cof"]').forEach(function(radio) {
-        radio.addEventListener('change', function() {
-            var reoccurredInput = document.getElementById('reoccurredInput');
-            if (this.value === '2') {
-                reoccurredInput.style.display = 'block';
-            } else {
-                reoccurredInput.style.display = 'none';
-            }
+        document.querySelectorAll('input[type="radio"][name="cof"]').forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                var reoccurredInput = document.getElementById('reoccurredInput');
+                if (this.value === '2') {
+                    reoccurredInput.style.display = 'block';
+                } else {
+                    reoccurredInput.style.display = 'none';
+                }
+            });
         });
-    });
     </script>
 
     <script>
-    function formatNumber(input) {
-        // Menghapus semua karakter selain angka
-        var value = input.value.replace(/\D/g, '');
+        function formatNumber(input) {
+            // Menghapus semua karakter selain angka
+            var value = input.value.replace(/\D/g, '');
 
-        // Menambahkan titik setiap 3 digit dari belakang
-        var formattedValue = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            // Menambahkan titik setiap 3 digit dari belakang
+            var formattedValue = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
-        // Memasukkan kembali nilai yang sudah diformat ke dalam input
-        input.value = formattedValue;
-    }
+            // Memasukkan kembali nilai yang sudah diformat ke dalam input
+            input.value = formattedValue;
+        }
     </script>
 
     <script>
-    // Atur pesan sukses untuk ditampilkan selama 5 detik
-    setTimeout(function() {
-        document.getElementById("successMessage").style.display = "none";
-    }, 2000);
+        // Atur pesan sukses untuk ditampilkan selama 5 detik
+        setTimeout(function () {
+            document.getElementById("successMessage").style.display = "none";
+        }, 2000);
     </script>
 
     <script>
-    $(function() {
-        $("#datepicker1").datepicker({
-            changeMonth: true,
-            changeYear: true
+        $(function () {
+            $("#datepicker1").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
         });
-    });
 
-    $(function() {
-        $("#datepicker2").datepicker({
-            changeMonth: true,
-            changeYear: true
+        $(function () {
+            $("#datepicker2").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
         });
-    });
 
-    $(function() {
-        $("#datepicker3").datepicker({
-            changeMonth: true,
-            changeYear: true
+        $(function () {
+            $("#datepicker3").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
         });
-    });
 
-    $(function() {
-        $("#datepicker4").datepicker({
-            changeMonth: true,
-            changeYear: true
+        $(function () {
+            $("#datepicker4").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
         });
-    });
     </script>
 
     <script>
-    function updateTime() {
-        var currentTime = new Date();
-        var hours = currentTime.getHours();
-        var minutes = currentTime.getMinutes();
-        var seconds = currentTime.getSeconds();
+        function updateTime() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
 
-        // Menambahkan leading zero jika angka kurang dari 10
-        hours = (hours < 10 ? "0" : "") + hours;
-        minutes = (minutes < 10 ? "0" : "") + minutes;
-        seconds = (seconds < 10 ? "0" : "") + seconds;
+            // Menambahkan leading zero jika angka kurang dari 10
+            hours = (hours < 10 ? "0" : "") + hours;
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            seconds = (seconds < 10 ? "0" : "") + seconds;
 
-        var formattedTime = hours + ":" + minutes + ":" + seconds;
+            var formattedTime = hours + ":" + minutes + ":" + seconds;
 
-        document.getElementById("current-time").innerText = formattedTime;
-    }
-    // Memanggil updateTime setiap detik
-    setInterval(updateTime, 1000);
+            document.getElementById("current-time").innerText = formattedTime;
+        }
+        // Memanggil updateTime setiap detik
+        setInterval(updateTime, 1000);
 
-    // Panggil updateTime setelah halaman dimuat
-    updateTime();
+        // Panggil updateTime setelah halaman dimuat
+        updateTime();
     </script>
     <script src="../../../assets/slim-select/selectize.min.js"></script>
     <script>
-    $(function() {
-        $("#supp").selectize();
-        $("select[name='part_name']").selectize();
-        $("select[name='part_num']").selectize();
-    });
+        $(function () {
+            $("#supp").selectize();
+            $("select[name='part_name']").selectize();
+            $("select[name='part_num']").selectize();
+        });
     </script>
 </body>
 
 </html>
 <style>
-.wajib {
-    color: red;
-}
+    .wajib {
+        color: red;
+    }
 
-.btn-primary.custom-button {
-    color: white;
-}
+    .btn-primary.custom-button {
+        color: white;
+    }
 
-.btn-primary.custom-button:hover {
-    background-color: white;
-    color: #007bff;
-    /* Bootstrap primary color */
-}
+    .btn-primary.custom-button:hover {
+        background-color: white;
+        color: #007bff;
+        /* Bootstrap primary color */
+    }
 
-.btn-danger.custom-button {
-    color: white;
-}
+    .btn-danger.custom-button {
+        color: white;
+    }
 
-.btn-danger.custom-button:hover {
-    background-color: white;
-    color: #dc3545;
-    /* Bootstrap danger color */
-}
+    .btn-danger.custom-button:hover {
+        background-color: white;
+        color: #dc3545;
+        /* Bootstrap danger color */
+    }
 </style>

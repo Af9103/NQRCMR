@@ -187,38 +187,38 @@ $SendChecked = ($dotc === "2") ? "checked" : "";
                                 </fieldset>
 
                                 <?php if ($dotc == "2"): ?>
-                                    <fieldset class="row mb-3">
-                                        <legend class="col-form-label col-sm-4 pt-0">Send The Replacement</legend>
-                                        <div class="col-sm-8">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="stc" id="stc1" value="1"
-                                                    <?php echo $AirChecked; ?> disabled>
-                                                <label class="form-check-label" for="stc1">
-                                                    By Air
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="stc" id="stc2" value="2"
-                                                    <?php echo $SendChecked; ?> disabled>
-                                                <label class="form-check-label" for="stc2">
-                                                    By Sea
-                                                </label>
-                                            </div>
+                                <fieldset class="row mb-3">
+                                    <legend class="col-form-label col-sm-4 pt-0">Send The Replacement</legend>
+                                    <div class="col-sm-8">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="stc" id="stc1" value="1"
+                                                <?php echo $AirChecked; ?> disabled>
+                                            <label class="form-check-label" for="stc1">
+                                                By Air
+                                            </label>
                                         </div>
-                                    </fieldset>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="stc" id="stc2" value="2"
+                                                <?php echo $SendChecked; ?> disabled>
+                                            <label class="form-check-label" for="stc2">
+                                                By Sea
+                                            </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
                                 <?php endif; ?>
 
                                 <?php if ($stc !== "0" && $stc !== null): ?>
-                                    <div id="replacementDateInput">
-                                        <div class="form-group row">
-                                            <label for="replacementDate" class="col-sm-4 col-form-label">Replacement
-                                                Date</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="dt_stc"
-                                                    value="<?php echo $dt_stc; ?>" disabled>
-                                            </div>
+                                <div id="replacementDateInput">
+                                    <div class="form-group row">
+                                        <label for="replacementDate" class="col-sm-4 col-form-label">Replacement
+                                            Date</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="dt_stc"
+                                                value="<?php echo $dt_stc; ?>" disabled>
                                         </div>
                                     </div>
+                                </div>
                                 <?php endif; ?>
 
                                 <div class="row mb-3" style="display: none;">
@@ -291,21 +291,21 @@ $SendChecked = ($dotc === "2") ? "checked" : "";
     </main>
 
     <script>
-        function resetForm() {
-            // Dapatkan semua elemen input dalam formulir
-            var inputs = document.querySelectorAll('form input[type=text], form input[type=date], form textarea');
+    function resetForm() {
+        // Dapatkan semua elemen input dalam formulir
+        var inputs = document.querySelectorAll('form input[type=text], form input[type=date], form textarea');
 
-            // Setel nilai setiap elemen input menjadi string kosong
-            inputs.forEach(function (input) {
-                input.value = '';
-            });
+        // Setel nilai setiap elemen input menjadi string kosong
+        inputs.forEach(function(input) {
+            input.value = '';
+        });
 
-            // Reset juga untuk file input jika ada
-            var fileInputs = document.querySelectorAll('form input[type=file]');
-            fileInputs.forEach(function (fileInput) {
-                fileInput.value = null;
-            });
-        }
+        // Reset juga untuk file input jika ada
+        var fileInputs = document.querySelectorAll('form input[type=file]');
+        fileInputs.forEach(function(fileInput) {
+            fileInput.value = null;
+        });
+    }
     </script>
 
     <!-- ======= Footer ======= -->
@@ -345,49 +345,41 @@ $SendChecked = ($dotc === "2") ? "checked" : "";
 
             $message = "Pemberitahuan CMR! CMR dengan nomor $cmr_no telah di-approve oleh Foreman PPC $nm_fm_ppc. Status menunggu approval supervisor.";
             $flags = "queue";
-            $query_phone = "SELECT no_hp FROM isd 
-                            LEFT JOIN ct_users ON ct_users.npk = isd.npk 
-                            WHERE ct_users.golongan = 4 AND ct_users.acting = 2 AND dept = 'PPC'";
-            $result_phone = mysqli_query($koneksi2, $query_phone);
+            $query_npk = "SELECT npk FROM ct_users WHERE golongan = 4 AND acting = 2 AND dept = 'PPC'";
+            $result_npk = mysqli_query($koneksi2, $query_npk);
 
-            $phone_numbers = array();
-
-            if ($result_phone) {
-                while ($phone_row = mysqli_fetch_assoc($result_phone)) {
-                    $phone_numbers[] = $phone_row['no_hp'];
+            // Collect NPKs
+            $npk_list = array();
+            if ($result_npk) {
+                while ($row = mysqli_fetch_assoc($result_npk)) {
+                    $npk_list[] = "'" . $row['npk'] . "'";
                 }
             }
 
-            if (!empty($phone_numbers)) {
-                foreach ($phone_numbers as $phone_number) {
-                    $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
-                    mysqli_query($koneksi3, $query_insert_notif); // Corrected $koneks3 to $koneksi3
+            if (!empty($npk_list)) {
+                // Convert NPK array to string for query
+                $npk_list_str = implode(',', $npk_list);
+
+                // Query to get phone numbers based on NPK list
+                $query_phone = "SELECT no_hp FROM hp WHERE npk IN ($npk_list_str)";
+                $result_phone = mysqli_query($koneksi4, $query_phone);
+
+                $phone_numbers = array();
+                if ($result_phone) {
+                    while ($phone_row = mysqli_fetch_assoc($result_phone)) {
+                        $phone_numbers[] = $phone_row['no_hp'];
+                    }
+                }
+
+                if (!empty($phone_numbers)) {
+                    // Insert notification for each phone number
+                    foreach ($phone_numbers as $phone_number) {
+                        $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
+                        mysqli_query($koneksi3, $query_insert_notif);
+                    }
                 }
             }
             echo '<script>
-    var no_cmr_sanitized = "' . preg_replace("/[^a-zA-Z0-9]+/", "", $cmr_no) . '";
-    var message = "CMR dengan nomor ' . $cmr_no . ' telah di approve oleh foreman PPC(' . $nm_fm_ppc . '). Klik link ini untuk memeriksa NQR: http://e-learning.stmi.ac.id/mhs/login";
-
-    var numbers = ["081283265843", "089502233425"]; // Tambahkan nomor baru di sini
-
-    numbers.forEach(function(number) {
-        var formData = new FormData();
-        formData.append("message", message);
-        formData.append("number", number);
-
-        fetch("https://3rxjp5-8000.csb.app/send-message", {
-            method: "POST",
-            body: formData
-        })
-        .then(() => {
-            console.log("Pesan berhasil dikirim ke " + number);
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
-    });
-
-    // Menampilkan SweetAlert tanpa menunggu pesan WhatsApp terkirim
     Swal.fire({
         position: "center",
         icon: "success",
@@ -421,49 +413,41 @@ $SendChecked = ($dotc === "2") ? "checked" : "";
             // Kirim notifikasi jika query update berhasil
             $message = "Pemberitahuan CMR! CMR dengan nomor $cmr_no telah di reject oleh foreman PPC $nm_fm_ppc dengan remark $remark_fm_ppc";
             $flags = "queue";
-            $query_phone = "SELECT no_hp FROM isd 
-                            LEFT JOIN ct_users ON ct_users.npk = isd.npk 
-                            WHERE ct_users.golongan = 2 AND ct_users.acting = 2 AND dept = 'PPC'";
-            $result_phone = mysqli_query($koneksi2, $query_phone);
+            $query_npk = "SELECT npk FROM ct_users WHERE golongan = 2 AND acting = 2 AND dept = 'PPC'";
+            $result_npk = mysqli_query($koneksi2, $query_npk);
 
-            $phone_numbers = array();
-
-            if ($result_phone) {
-                while ($phone_row = mysqli_fetch_assoc($result_phone)) {
-                    $phone_numbers[] = $phone_row['no_hp'];
+            // Collect NPKs
+            $npk_list = array();
+            if ($result_npk) {
+                while ($row = mysqli_fetch_assoc($result_npk)) {
+                    $npk_list[] = "'" . $row['npk'] . "'";
                 }
             }
 
-            if (!empty($phone_numbers)) {
-                foreach ($phone_numbers as $phone_number) {
-                    $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
-                    mysqli_query($koneksi3, $query_insert_notif);
+            if (!empty($npk_list)) {
+                // Convert NPK array to string for query
+                $npk_list_str = implode(',', $npk_list);
+
+                // Query to get phone numbers based on NPK list
+                $query_phone = "SELECT no_hp FROM hp WHERE npk IN ($npk_list_str)";
+                $result_phone = mysqli_query($koneksi4, $query_phone);
+
+                $phone_numbers = array();
+                if ($result_phone) {
+                    while ($phone_row = mysqli_fetch_assoc($result_phone)) {
+                        $phone_numbers[] = $phone_row['no_hp'];
+                    }
+                }
+
+                if (!empty($phone_numbers)) {
+                    // Insert notification for each phone number
+                    foreach ($phone_numbers as $phone_number) {
+                        $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
+                        mysqli_query($koneksi3, $query_insert_notif);
+                    }
                 }
             }
             echo '<script>
-    var no_reg_sanitized = "' . preg_replace("/[^a-zA-Z0-9]+/", "", $cmr_no) . '";
-    var message = "CMR dengan nomor ' . $cmr_no . ' telah di reject oleh Foreman PPC(' . $nm_fm_ppc . ').dengan alasan ' . $remark_fm_ppc . ' Klik link ini untuk memeriksa CMR: http://e-learning.stmi.ac.id/mhs/login";
-
-    var numbers = ["081283265843", "089502233425"]; // Tambahkan nomor baru di sini
-
-    numbers.forEach(function(number) {
-        var formData = new FormData();
-        formData.append("message", message);
-        formData.append("number", number);
-
-        fetch("https://3rxjp5-8000.csb.app/send-message", {
-            method: "POST",
-            body: formData
-        })
-        .then(() => {
-            console.log("Pesan berhasil dikirim ke " + number);
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
-    });
-
-    // Menampilkan SweetAlert tanpa menunggu pesan WhatsApp terkirim
     Swal.fire({
         position: "center",
         icon: "error",
@@ -491,48 +475,48 @@ $SendChecked = ($dotc === "2") ? "checked" : "";
 <script src="../../../assets/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
 
 <script>
-    function updateTime() {
-        var currentTime = new Date();
-        var hours = currentTime.getHours();
-        var minutes = currentTime.getMinutes();
-        var seconds = currentTime.getSeconds();
+function updateTime() {
+    var currentTime = new Date();
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var seconds = currentTime.getSeconds();
 
-        // Menambahkan leading zero jika angka kurang dari 10
-        hours = (hours < 10 ? "0" : "") + hours;
-        minutes = (minutes < 10 ? "0" : "") + minutes;
-        seconds = (seconds < 10 ? "0" : "") + seconds;
+    // Menambahkan leading zero jika angka kurang dari 10
+    hours = (hours < 10 ? "0" : "") + hours;
+    minutes = (minutes < 10 ? "0" : "") + minutes;
+    seconds = (seconds < 10 ? "0" : "") + seconds;
 
-        var formattedTime = hours + ":" + minutes + ":" + seconds;
+    var formattedTime = hours + ":" + minutes + ":" + seconds;
 
-        document.getElementById("current-time").innerText = formattedTime;
-    }
+    document.getElementById("current-time").innerText = formattedTime;
+}
 
-    // Memanggil updateTime setiap detik
-    setInterval(updateTime, 1000);
+// Memanggil updateTime setiap detik
+setInterval(updateTime, 1000);
 
-    // Panggil updateTime setelah halaman dimuat
-    updateTime();
+// Panggil updateTime setelah halaman dimuat
+updateTime();
 </script>
 
 </html>
 <style>
-    .btn-primary.custom-button {
-        color: white;
-    }
+.btn-primary.custom-button {
+    color: white;
+}
 
-    .btn-primary.custom-button:hover {
-        background-color: white;
-        color: #007bff;
-        /* Bootstrap primary color */
-    }
+.btn-primary.custom-button:hover {
+    background-color: white;
+    color: #007bff;
+    /* Bootstrap primary color */
+}
 
-    .btn-danger.custom-button {
-        color: white;
-    }
+.btn-danger.custom-button {
+    color: white;
+}
 
-    .btn-danger.custom-button:hover {
-        background-color: white;
-        color: #dc3545;
-        /* Bootstrap danger color */
-    }
+.btn-danger.custom-button:hover {
+    background-color: white;
+    color: #dc3545;
+    /* Bootstrap danger color */
+}
 </style>

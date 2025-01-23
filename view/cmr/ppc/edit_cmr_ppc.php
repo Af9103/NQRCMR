@@ -188,23 +188,23 @@ while ($user_data = mysqli_fetch_array($query)) {
     <!-- Template Main JS File -->
     <script src="../../../assets/js/main.js"></script>
     <script>
-        function showAdditionalOptions() {
-            var customerRadio = document.getElementById("gridRadios2");
-            var ptKybiRadio = document.getElementById("gridRadios3");
-            var additionalOptionsPtKybiDiv = document.getElementById("additionalOptionsPtKybi");
-            var additionalOptionsCustomerDiv = document.getElementById("additionalOptionsCustomer");
+    function showAdditionalOptions() {
+        var customerRadio = document.getElementById("gridRadios2");
+        var ptKybiRadio = document.getElementById("gridRadios3");
+        var additionalOptionsPtKybiDiv = document.getElementById("additionalOptionsPtKybi");
+        var additionalOptionsCustomerDiv = document.getElementById("additionalOptionsCustomer");
 
-            if (ptKybiRadio.checked) {
-                additionalOptionsPtKybiDiv.style.display = "block";
-                additionalOptionsCustomerDiv.style.display = "none";
-            } else if (customerRadio.checked) {
-                additionalOptionsPtKybiDiv.style.display = "none";
-                additionalOptionsCustomerDiv.style.display = "block";
-            } else {
-                additionalOptionsPtKybiDiv.style.display = "none";
-                additionalOptionsCustomerDiv.style.display = "none";
-            }
+        if (ptKybiRadio.checked) {
+            additionalOptionsPtKybiDiv.style.display = "block";
+            additionalOptionsCustomerDiv.style.display = "none";
+        } else if (customerRadio.checked) {
+            additionalOptionsPtKybiDiv.style.display = "none";
+            additionalOptionsCustomerDiv.style.display = "block";
+        } else {
+            additionalOptionsPtKybiDiv.style.display = "none";
+            additionalOptionsCustomerDiv.style.display = "none";
         }
+    }
     </script>
 
 
@@ -229,49 +229,41 @@ while ($user_data = mysqli_fetch_array($query)) {
         if ($result && $result2) {
             $message = "Pemberitahuan CMR! CMR dengan nomor $cmr_no telah dilanjutkan oleh $nm_op_ppc. Status menunggu approval foreman.";
             $flags = "queue";
-            $query_phone = "SELECT no_hp FROM isd 
-                            LEFT JOIN ct_users ON ct_users.npk = isd.npk 
-                            WHERE ct_users.golongan = 3 AND ct_users.acting = 2 AND dept = 'PPC'";
-            $result_phone = mysqli_query($koneksi2, $query_phone);
+            $query_npk = "SELECT npk FROM ct_users WHERE golongan = 3 AND acting = 2 AND dept = 'PPC'";
+            $result_npk = mysqli_query($koneksi2, $query_npk);
 
-            $phone_numbers = array();
-
-            if ($result_phone) {
-                while ($phone_row = mysqli_fetch_assoc($result_phone)) {
-                    $phone_numbers[] = $phone_row['no_hp'];
+            // Collect NPKs
+            $npk_list = array();
+            if ($result_npk) {
+                while ($row = mysqli_fetch_assoc($result_npk)) {
+                    $npk_list[] = "'" . $row['npk'] . "'";
                 }
             }
 
-            if (!empty($phone_numbers)) {
-                foreach ($phone_numbers as $phone_number) {
-                    $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
-                    mysqli_query($koneksi3, $query_insert_notif);
+            if (!empty($npk_list)) {
+                // Convert NPK array to string for query
+                $npk_list_str = implode(',', $npk_list);
+
+                // Query to get phone numbers based on NPK list
+                $query_phone = "SELECT no_hp FROM hp WHERE npk IN ($npk_list_str)";
+                $result_phone = mysqli_query($koneksi4, $query_phone);
+
+                $phone_numbers = array();
+                if ($result_phone) {
+                    while ($phone_row = mysqli_fetch_assoc($result_phone)) {
+                        $phone_numbers[] = $phone_row['no_hp'];
+                    }
+                }
+
+                if (!empty($phone_numbers)) {
+                    // Insert notification for each phone number
+                    foreach ($phone_numbers as $phone_number) {
+                        $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
+                        mysqli_query($koneksi3, $query_insert_notif);
+                    }
                 }
             }
             echo '<script>
-      var no_cmr_sanitized = "' . preg_replace("/[^a-zA-Z0-9]+/", "", $cmr_no) . '";
-      var message = "CMR dengan nomor ' . $cmr_no . ' telah dibuat oleh operator PPC (' . $nm_op_ppc . '). Klik link ini untuk memeriksa NQR: http://e-learning.stmi.ac.id/mhs/login";
-  
-      var numbers = ["081283265843", "089502233425"]; // Tambahkan nomor baru di sini
-  
-      numbers.forEach(function(number) {
-          var formData = new FormData();
-          formData.append("message", message);
-          formData.append("number", number);
-  
-          fetch("https://3rxjp5-8000.csb.app/send-message", {
-              method: "POST",
-              body: formData
-          })
-          .then(() => {
-              console.log("Pesan berhasil dikirim ke " + number);
-          })
-          .catch(error => {
-              console.error("Error:", error);
-          });
-      });
-  
-      // Menampilkan SweetAlert tanpa menunggu pesan WhatsApp terkirim
       Swal.fire({
           position: "center",
           icon: "success",
@@ -290,102 +282,103 @@ while ($user_data = mysqli_fetch_array($query)) {
     }
     ?>
     <script>
-        // Function to show/hide date input based on selection
-        function toggleDateInput() {
-            var selectedOption = document.querySelector('input[name="stc"]:checked').value;
-            var dateInput = document.getElementById('replacementDateInput');
+    // Function to show/hide date input based on selection
+    function toggleDateInput() {
+        var selectedOption = document.querySelector('input[name="stc"]:checked').value;
+        var dateInput = document.getElementById('replacementDateInput');
 
-            if (selectedOption === '1' || selectedOption === '2') {
-                dateInput.style.display = 'block';
-            } else {
-                dateInput.style.display = 'none';
-            }
+        if (selectedOption === '1' || selectedOption === '2') {
+            dateInput.style.display = 'block';
+        } else {
+            dateInput.style.display = 'none';
         }
+    }
     </script>
 
     <script>
-        $(function () {
-            $("#datepicker1").datepicker({
-                changeMonth: true,
-                changeYear: true
-            });
+    $(function() {
+        $("#datepicker1").datepicker({
+            changeMonth: true,
+            changeYear: true
         });
+    });
     </script>
 
     <script>
-        function updateTime() {
-            var currentTime = new Date();
-            var hours = currentTime.getHours();
-            var minutes = currentTime.getMinutes();
-            var seconds = currentTime.getSeconds();
+    func tion updateTime() {
+        var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
 
-            // Menambahkan leading zero jika angka kurang dari 10
-            hours = (hours < 10 ? "0" : "") + hours;
-            minutes = (minutes < 10 ? "0" : "") + minutes;
-            seconds = (seconds < 10 ? "0" : "") + seconds;
+        // Menambahkan leading zero jika angka kurang dari 10
+        hours = (hours < 10 ? "0" : "") + hours;
+        minutes = (minutes < 10 ? "0" : "") + minutes;
+        seconds = (seconds < 10 ? "0" : "") + seconds;
 
-            var formattedTime = hours + ":" + minutes + ":" + seconds;
+        var formattedTime = hours + ":" + minutes + ":" + seconds;
 
-            document.getElementById("current-time").innerText = formattedTime;
+        document.getElementById("current-time").innerText = formattedTime;
+    }
+
+    // Memanggil updateTime setiap detik
+    setInterval(updateTime, 1000);
+
+    // Panggil updateTime setelah halaman dimuat
+    updateTime();
+    </script>
+
+    <script>
+    func tion resetForm() {
+        // Mendapatkan referensi form
+        var form = document.getElementById('form-control'); // Ganti 'form_id' dengan ID form Anda
+
+        // Mereset form
+        form.reset();
+    }
+    </script>
+
+    <script>
+    docu ment.addEventListener('DOMContentLoaded', function() {
+        // Assuming status_ppc is set somewhere in your PHP or you can retrieve it from your backend
+        var st s_cmr_ppc =
+            <?php echo $sts_cmr_ppc; ?>; // Assuming $status_ppc is the variable containing the status_ppc value
+
+        // Get the feedback input element
+        var feedbackDiv = document.getElementById('feedbackDiv');
+
+        // Check the value of status_ppc and hide the feedback input accordingly
+        if (sts_cmr_ppc === 1 || sts_cmr_ppc === 2) {
+            feedbackDiv.style.display = 'none'; // Hide the feedbackDiv
         }
-
-        // Memanggil updateTime setiap detik
-        setInterval(updateTime, 1000);
-
-        // Panggil updateTime setelah halaman dimuat
-        updateTime();
-    </script>
-
-    <script>
-        function resetForm() {
-            // Mendapatkan referensi form
-            var form = document.getElementById('form-control'); // Ganti 'form_id' dengan ID form Anda
-
-            // Mereset form
-            form.reset();
-        }
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Assuming status_ppc is set somewhere in your PHP or you can retrieve it from your backend
-            var sts_cmr_ppc =
-                <?php echo $sts_cmr_ppc; ?>; // Assuming $status_ppc is the variable containing the status_ppc value
-
-            // Get the feedback input element
-            var feedbackDiv = document.getElementById('feedbackDiv');
-
-            // Check the value of status_ppc and hide the feedback input accordingly
-            if (sts_cmr_ppc === 1 || sts_cmr_ppc === 2) {
-                feedbackDiv.style.display = 'none'; // Hide the feedbackDiv
-            }
-        });
+    });
     </script>
 </body>
 
 </html>
 <style>
-    .wajib {
-        color: red;
-    }
+.waj ib {
+    color: red;
+}
 
-    .btn-primary.custom-button {
-        color: white;
-    }
+.btn -primary.custom-button {
+    color: white;
+}
 
-    .btn-primary.custom-button:hover {
-        background-color: white;
-        color: #007bff;
-        /* Bootstrap primary color */
-    }
 
-    .btn-danger.custom-button {
-        color: white;
-    }
+.btn-primary.custom-button:hover {
+    background-color: white;
+    color: #007bff;
+    /* Bootstrap primary color */
+}
 
-    .btn-danger.custom-button:hover {
-        background-color: white;
-        color: #dc3545;
-        /* Bootstrap danger color */
-    }
+.btn-danger.custom-button {
+    color: white;
+}
+
+.btn-danger.custom-button:hover {
+    background-color: white;
+    color: #dc3545;
+    /* Bootstrap danger color */
+}
 </style>

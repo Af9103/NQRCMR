@@ -763,19 +763,14 @@ $currentYear = date("Y");
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 
-    <script src="../../../assets/sweetalert2/sweetalert2.all.min.js"></script>
-
-    <!-- Vendor JS Files -->
-    <script src="../../../assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="../../../asset/sweetalert2/sweet.js"></script>
     <script src="../../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../../assets/vendor/chart.js/chart.umd.js"></script>
-    <script src="../../../assets/vendor/echarts/echarts.min.js"></script>
-    <script src="../../../assets/vendor/quill/quill.min.js"></script>
-    <script src="../../../assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="../../../assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="../../../assets/vendor/php-email-form/validate.js"></script>
-    <script src="../../../asset/jQuery/jquery-3.6.0.js"></script>
-    <script src="../../../asset/jQuery/jquery-ui-1.13.2.custom/jquery-ui.js"></script>
+    <!-- Load jQuery and DataTables -->
+    <script src="../../../asset/jQuery/jquery-3.6.0.min.js"></script>
+    <script src="../../../asset/DataTables/js/datatables.min.js"></script>
+    <script src="../../../assets/sweetalert2/package/dist/sweetalert2.all.min.js"></script>
+    <script src="../../../assets/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+    <script src="../../../assets/DataTables-2.0.1/js/dataTables.bootstrap4.min.js"></script>
 
     <!-- Template Main JS File -->
     <script src="../../../assets/js/main.js"></script>
@@ -993,25 +988,44 @@ $currentYear = date("Y");
                 // Kirim notifikasi
                 $message = "Pemberitahuan NQR! NQR dengan nomor $reg_no telah diedit oleh $nm_op_qa. Status menunggu approval foreman.";
                 $flags = "queue";
-                $query_phone = "SELECT no_hp FROM isd 
-                                LEFT JOIN ct_users ON ct_users.npk = isd.npk 
-                                WHERE ct_users.golongan = 3 AND ct_users.acting = 2 AND dept = 'QA'";
-                $result_phone = mysqli_query($koneksi2, $query_phone);
+                if ($result_rejectspv) {
+                    // Kirim notifikasi jika query update berhasil
+                    $message = "Pemberitahuan NQR! NQR dengan nomor $reg_no telah di reject oleh Supervisor QA $nm_spv_vdd dengan remark $remark_spv_vdd";
+                    $flags = "queue";
+                    $query_npk = "SELECT npk FROM ct_users WHERE golongan = 3 AND acting = 2 AND dept = 'QA'";
+                    $result_npk = mysqli_query($koneksi2, $query_npk);
         
-                $phone_numbers = array();
-        
-                if ($result_phone) {
-                    while ($phone_row = mysqli_fetch_assoc($result_phone)) {
-                        $phone_numbers[] = $phone_row['no_hp'];
+                    // Collect NPKs
+                    $npk_list = array();
+                    if ($result_npk) {
+                        while ($row = mysqli_fetch_assoc($result_npk)) {
+                            $npk_list[] = "'" . $row['npk'] . "'";
+                        }
                     }
-                }
         
-                if (!empty($phone_numbers)) {
-                    foreach ($phone_numbers as $phone_number) {
-                        $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
-                        mysqli_query($koneksi, $query_insert_notif);
+                    if (!empty($npk_list)) {
+                        // Convert NPK array to string for query
+                        $npk_list_str = implode(',', $npk_list);
+        
+                        // Query to get phone numbers based on NPK list
+                        $query_phone = "SELECT no_hp FROM hp WHERE npk IN ($npk_list_str)";
+                        $result_phone = mysqli_query($koneksi4, $query_phone);
+        
+                        $phone_numbers = array();
+                        if ($result_phone) {
+                            while ($phone_row = mysqli_fetch_assoc($result_phone)) {
+                                $phone_numbers[] = $phone_row['no_hp'];
+                            }
+                        }
+        
+                        if (!empty($phone_numbers)) {
+                            // Insert notification for each phone number
+                            foreach ($phone_numbers as $phone_number) {
+                                $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
+                                mysqli_query($koneksi, $query_insert_notif);
+                            }
+                        }
                     }
-                }
         
                 // Jika berhasil, arahkan ke halaman dasbor.php dan tampilkan pesan
                 echo '<script>';

@@ -127,19 +127,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $reg_no = $_POST['reg_no'];
   $message = $_POST['message'];
   $flags = $_POST['flags'];
-  $query_phone = $_POST['query_phone'];
+  $query_npk = $_POST['query_npk'];
 
-  // Eksekusi query untuk mendapatkan nomor telepon
-  $result_phone = mysqli_query($koneksi2, $query_phone);
+  // Execute the query to get NPKs
+  $result_npk = mysqli_query($koneksi2, $query_npk);
+  $npk_list = array();
 
-  if ($result_phone) {
-    // Cek apakah ada hasil
-    if (mysqli_num_rows($result_phone) > 0) {
-      // Loop untuk setiap nomor telepon yang ditemukan
+  if ($result_npk) {
+    while ($row = mysqli_fetch_assoc($result_npk)) {
+      $npk_list[] = "'" . $row['npk'] . "'";
+    }
+  }
+
+  if (!empty($npk_list)) {
+    // Convert NPK array to string for the phone query
+    $npk_list_str = implode(',', $npk_list);
+
+    // Query to get phone numbers based on NPK list
+    $query_phone = "SELECT no_hp FROM hp WHERE npk IN ($npk_list_str)";
+    $result_phone = mysqli_query($koneksi4, $query_phone);
+
+    if ($result_phone && mysqli_num_rows($result_phone) > 0) {
       while ($phone_row = mysqli_fetch_assoc($result_phone)) {
         $phone_number = $phone_row['no_hp'];
 
-        // Insert ke tabel notif untuk setiap nomor telepon
+        // Insert into the notif table for each phone number
         $query_insert_notif = "INSERT INTO notif (phone_number, message, flags) VALUES ('$phone_number', '$message', '$flags')";
         if (!mysqli_query($koneksi, $query_insert_notif)) {
           die("Error inserting notification for phone number $phone_number: " . mysqli_error($koneksi));
@@ -150,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       echo "No phone numbers found.";
     }
   } else {
-    echo "Error fetching phone numbers: " . mysqli_error($koneksi2);
+    echo "No NPKs found for the specified role.";
   }
 }
 ?>
@@ -285,33 +297,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-  <!-- Vendor JS Files -->
-  <script src="../../../assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="../../../asset/sweetalert2/sweet.js"></script>
   <script src="../../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../../../assets/vendor/chart.js/chart.umd.js"></script>
-  <script src="../../../assets/vendor/echarts/echarts.min.js"></script>
-  <script src="../../../assets/vendor/quill/quill.min.js"></script>
-  <script src="../../../assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="../../../assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="../../../assets/vendor/php-email-form/validate.js"></script>
-
-
-  <!-- Template Main JS File -->
-  <script src="../../../assets/js/main.js"></script>
-
   <!-- Load jQuery and DataTables -->
   <script src="../../../asset/jQuery/jquery-3.6.0.min.js"></script>
   <script src="../../../asset/DataTables/js/datatables.min.js"></script>
-  <script src="../../../assets/sweetalert3/package/dist/sweetalert2.all.min.js"></script>
-
+  <script src="../../../assets/sweetalert2/package/dist/sweetalert2.all.min.js"></script>
   <script src="../../../assets/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
-  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
-
-  <!-- <script src="https://cdn.datatables.net/v/bs4/dt-1.11.5/datatables.min.js"></script> -->
   <script src="../../../assets/DataTables-2.0.1/js/dataTables.bootstrap4.min.js"></script>
-
-  <!-- <script src="asset/DataTables/dataTables.bootstrap4.min.js"></script> -->
 
   <script>
     function sendWhatsAppMessage(reg_no, approval_role, delay) {
@@ -320,36 +313,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       let flags = "queue";
 
       // Define the appropriate query based on the approval role
-      let query_phone = "";
+      let query_npk = "";
 
       // Check the session role and adjust the query accordingly
       if (<?php echo json_encode($_SESSION['role'] == 'OPQA'); ?>) {
         if (approval_role === 'Foreman') {
-          query_phone = "SELECT no_hp FROM isd LEFT JOIN ct_users ON ct_users.npk = isd.npk WHERE ct_users.golongan = 3 AND ct_users.acting = 2 AND dept = 'QA'";
+          query_npk = "SELECT npk FROM ct_users WHERE golongan = 3 AND acting = 2 AND dept = 'QA'";
         } else if (approval_role === 'Supervisor') {
-          query_phone = "SELECT no_hp FROM isd LEFT JOIN ct_users ON ct_users.npk = isd.npk WHERE ct_users.golongan = 4 AND ct_users.acting = 2 AND dept = 'QA'";
+          query_npk = "SELECT npk FROM ct_users WHERE golongan = 4 AND acting = 2 AND dept = 'QA'";
         } else if (approval_role === 'Manager') {
-          query_phone = "SELECT no_hp FROM isd LEFT JOIN ct_users ON ct_users.npk = isd.npk WHERE ct_users.golongan = 4 AND ct_users.acting = 1 AND dept = 'QA'";
+          query_npk = "SELECT npk FROM ct_users WHERE golongan = 4 AND acting = 1 AND dept = 'QA'";
         }
       } else if (<?php echo json_encode($_SESSION['role'] == 'OPPPC'); ?>) {
         if (approval_role === 'Foreman') {
-          query_phone = "SELECT no_hp FROM isd LEFT JOIN ct_users ON ct_users.npk = isd.npk WHERE ct_users.golongan = 3 AND ct_users.acting = 2 AND dept = 'PPC'";
+          query_npk = "SELECT npk FROM ct_users WHERE golongan = 3 AND acting = 2 AND dept = 'PPC'";
         } else if (approval_role === 'Supervisor') {
-          query_phone = "SELECT no_hp FROM isd LEFT JOIN ct_users ON ct_users.npk = isd.npk WHERE ct_users.golongan = 4 AND ct_users.acting = 2 AND dept = 'PPC'";
+          query_npk = "SELECT npk FROM ct_users WHERE golongan = 4 AND acting = 2 AND dept = 'PPC'";
         } else if (approval_role === 'Manager') {
-          query_phone = "SELECT no_hp FROM isd LEFT JOIN ct_users ON ct_users.npk = isd.npk WHERE ct_users.golongan = 4 AND ct_users.acting = 1 AND dept = 'PPC'";
+          query_npk = "SELECT npk FROM ct_users WHERE golongan = 4 AND acting = 1 AND dept = 'PPC'";
         }
       } else if (<?php echo json_encode($_SESSION['role'] == 'OPVDD'); ?>) {
         if (approval_role === 'Foreman') {
-          query_phone = "SELECT no_hp FROM isd LEFT JOIN ct_users ON ct_users.npk = isd.npk WHERE ct_users.golongan = 3 AND ct_users.acting = 2 AND dept = 'VDD'";
+          query_npk = "SELECT npk FROM ct_users WHERE golongan = 3 AND acting = 2 AND dept = 'VDD'";
         } else if (approval_role === 'Supervisor') {
-          query_phone = "SELECT no_hp FROM isd LEFT JOIN ct_users ON ct_users.npk = isd.npk WHERE ct_users.golongan = 4 AND ct_users.acting = 2 AND dept = 'VDD'";
+          query_npk = "SELECT npk FROM ct_users WHERE golongan = 4 AND acting = 2 AND dept = 'VDD'";
         } else if (approval_role === 'Manager') {
-          query_phone = "SELECT no_hp FROM isd LEFT JOIN ct_users ON ct_users.npk = isd.npk WHERE ct_users.golongan = 4 AND ct_users.acting = 1 AND dept = 'VDD'";
+          query_npk = "SELECT npk FROM ct_users WHERE golongan = 4 AND acting = 1 AND dept = 'VDD'";
         }
       }
 
-      // Send the AJAX request
+      // Send the AJAX request with the message and flags
       $.ajax({
         type: "POST",
         url: "notif.php",
@@ -357,7 +350,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           reg_no: reg_no,
           message: message,
           flags: flags,
-          query_phone: query_phone
+          query_npk: query_npk
         },
         success: function (response) {
           Swal.fire({
@@ -377,6 +370,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       });
     }
   </script>
+
 
   <script>
     $(document).ready(function () {
