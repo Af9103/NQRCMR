@@ -607,7 +607,7 @@ $query1 = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE YEAR(dt_op_qa) =
                   $encrypted_token = encryptIdToToken($Id, $key);
 
                   // Hasil enkripsi
-                  echo "<a href='edit_nqr.php' class='btn btn-success btn-sm' style='padding: 0.25rem 0.5rem;'>
+                  echo "<a href='edit_nqr.php?Id=" . $user_data['Id'] . "' ' class='btn btn-success btn-sm' style='padding: 0.25rem 0.5rem;'>
         <i class='ri-edit-2-line' style='color: white;'></i>
       </a>";
 
@@ -686,14 +686,14 @@ $query1 = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE YEAR(dt_op_qa) =
   <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> -->
 
   <script src="../../../assets/sweetalert2/sweetalert2.all.min.js"></script>
-    <script src="../../../asset/sweetalert2/sweet.js"></script>
-    <script src="../../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Load jQuery and DataTables -->
-    <script src="../../../asset/jQuery/jquery-3.6.0.min.js"></script>
-    <script src="../../../asset/DataTables/js/datatables.min.js"></script>
-    <script src="../../../assets/sweetalert2/package/dist/sweetalert2.all.min.js"></script>
-    <script src="../../../assets/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
-    <script src="../../../assets/DataTables-2.0.1/js/dataTables.bootstrap4.min.js"></script>
+  <script src="../../../asset/sweetalert2/sweet.js"></script>
+  <script src="../../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Load jQuery and DataTables -->
+  <script src="../../../asset/jQuery/jquery-3.6.0.min.js"></script>
+  <script src="../../../asset/DataTables/js/datatables.min.js"></script>
+  <script src="../../../assets/sweetalert2/package/dist/sweetalert2.all.min.js"></script>
+  <script src="../../../assets/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+  <script src="../../../assets/DataTables-2.0.1/js/dataTables.bootstrap4.min.js"></script>
 
   <script>
     function updateTime() {

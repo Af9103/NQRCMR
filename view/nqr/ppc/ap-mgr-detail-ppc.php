@@ -334,7 +334,7 @@ $SendChecked = ($p === "2") ? "checked" : "";
         $nm_mgr_ppc = $_POST['nm_mgr_ppc'];
 
         // Eksekusi query update
-        $result_approvemgr = mysqli_query($koneksi, "UPDATE transaksi SET dt_mgr_ppc='$dt_mgr_ppc', nm_mgr_ppc='$nm_mgr_ppc', status_ppc='5', sts_mgr_ppc='1',status_vdd='1' WHERE Id='$Id'");
+        $result_approvemgr = mysqli_query($koneksi, "UPDATE transaksi SET dt_mgr_ppc='$dt_mgr_ppc', nm_mgr_ppc='$nm_mgr_ppc', status_ppc='5', status_vdd='1', sts_mgr_ppc='1',status_vdd='1' WHERE Id='$Id'");
         if ($result_approvemgr) {
             // Kirim notifikasi jika query update berhasil
             $message = "Pemberitahuan NQR! NQR dengan nomor $reg_no telah di approve oleh Manager QA $nm_mgr_ppc. Selanjutnya akan dilanjutkan oleh departemen VDD.";

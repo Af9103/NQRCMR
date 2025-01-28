@@ -694,7 +694,7 @@ $RUChecked = ($cof === "2") ? "checked" : "";
         $dt_mgr_qa = date("Y-m-d H:i:s"); // Menggunakan format "YYYY-MM-DD HH:MM:SS" untuk tanggal dan waktu saat ini
     
         // Eksekusi query update
-        $result_approvemgr = mysqli_query($koneksi, "UPDATE transaksi SET dt_mgr_qa='$dt_mgr_qa', nm_mgr_qa='$nm_mgr_qa', status='4',sts_mgr_qa='1' WHERE Id='$Id'");
+        $result_approvemgr = mysqli_query($koneksi, "UPDATE transaksi SET dt_mgr_qa='$dt_mgr_qa', nm_mgr_qa='$nm_mgr_qa', status='4', status_ppc='1',sts_mgr_qa='1' WHERE Id='$Id'");
         if ($result_approvemgr) {
             // Kirim notifikasi jika query update berhasil
             $message = "Pemberitahuan NQR! NQR dengan nomor $reg_no telah di approve oleh Manager QA $nm_mgr_qa. Selanjutnya akan dilanjutkan oleh departemen PPC.";

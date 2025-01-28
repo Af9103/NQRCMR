@@ -1026,6 +1026,7 @@ $currentYear = date("Y");
                             }
                         }
                     }
+                }
         
                 // Jika berhasil, arahkan ke halaman dasbor.php dan tampilkan pesan
                 echo '<script>';

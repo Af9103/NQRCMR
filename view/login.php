@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION['role'] = "SPVVDD";
                         } elseif ($gol == 4 && $act == 1 && $dept == 'VDD') {
                             $_SESSION['role'] = "MGRVDD";
-                        } elseif ($gol == 5 && $act == 1 && $dept == 'admin') {
+                        } elseif ($dept == 'admin') {
                             $_SESSION['role'] = "admin";
                         } else {
                             header("Location: forbidden.php");

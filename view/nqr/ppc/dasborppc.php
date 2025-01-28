@@ -55,7 +55,7 @@ if (!$query1) {
 
 ?>
 
-<!-- <?php
+<?php
 
 // Periksa apakah ada parameter Id yang dikirim melalui GET
 $Id = isset($_GET['Id']) ? $_GET['Id'] : '';
@@ -691,14 +691,14 @@ $pChecked = ($info === "1") ? "checked" : "";
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
 
-    <script src="../../../asset/sweetalert2/sweet.js"></script>
-    <script src="../../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Load jQuery and DataTables -->
-    <script src="../../../asset/jQuery/jquery-3.6.0.min.js"></script>
-    <script src="../../../asset/DataTables/js/datatables.min.js"></script>
-    <script src="../../../assets/sweetalert2/package/dist/sweetalert2.all.min.js"></script>
-    <script src="../../../assets/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
-    <script src="../../../assets/DataTables-2.0.1/js/dataTables.bootstrap4.min.js"></script>
+  <script src="../../../asset/sweetalert2/sweet.js"></script>
+  <script src="../../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Load jQuery and DataTables -->
+  <script src="../../../asset/jQuery/jquery-3.6.0.min.js"></script>
+  <script src="../../../asset/DataTables/js/datatables.min.js"></script>
+  <script src="../../../assets/sweetalert2/package/dist/sweetalert2.all.min.js"></script>
+  <script src="../../../assets/bootstrap-4.5.3-dist/js/bootstrap.min.js"></script>
+  <script src="../../../assets/DataTables-2.0.1/js/dataTables.bootstrap4.min.js"></script>
 
   <script>
     $(document).ready(function () {
