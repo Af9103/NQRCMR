@@ -2867,7 +2867,7 @@ END ASC");
                                 </li>
                                 <!-- Logout -->
                                 <li>
-                                    <a class="dropdown-item d-flex align-items-center" href="logout.php">
+                                    <a class="dropdown-item d-flex align-items-center" href="../../logout.php">
                                         <i class="ri-logout-circle-line"></i>
                                         <span>Log Out</span>
                                     </a>
